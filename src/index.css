@@ -113,10 +113,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .eyebrow {
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--color-gray-muted);
   font-family: var(--font-body);
 }
@@ -224,8 +224,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-link {
   position: relative;
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 500;
   color: var(--color-off-white);
@@ -392,11 +392,11 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 600;
-  padding: 1rem 2rem;
+  padding: 1.1rem 2.25rem;
   background: var(--color-off-white);
   color: var(--color-black-primary);
   border: none;
@@ -424,11 +424,11 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 600;
-  padding: 1rem 2rem;
+  padding: 1.1rem 2.25rem;
   background: transparent;
   color: var(--color-off-white);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -446,11 +446,11 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 600;
-  padding: 1rem 2rem;
+  padding: 1.1rem 2.25rem;
   background: var(--color-black-primary);
   color: var(--color-off-white);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -587,15 +587,15 @@ h1, h2, h3, h4, h5, h6 {
    ======================================== */
 
 .filter-btn {
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   font-weight: 500;
   color: var(--color-gray-muted);
   background: none;
   border: none;
   cursor: none;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.25rem;
   position: relative;
   transition: color 0.3s ease;
 }
@@ -634,7 +634,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   gap: 2rem;
-  padding: 2rem 0;
+  padding: 2.25rem 0;
   cursor: none;
   transition: all 0.3s ease;
 }
@@ -767,20 +767,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .form-label {
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-gray-soft);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
   display: block;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .form-error {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   color: #c0392b;
-  margin-top: 0.25rem;
-  letter-spacing: 0.05em;
+  margin-top: 0.3rem;
+  letter-spacing: 0.04em;
 }
 
 /* ========================================
@@ -794,8 +794,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer-link {
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-gray-muted);
   text-decoration: none;

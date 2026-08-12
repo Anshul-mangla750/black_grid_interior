@@ -27,7 +27,7 @@ const Process = () => {
           </div>
 
           {/* Right - Process Cards */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             {processSteps.map((step, i) => (
               <motion.div
                 key={step.number}
