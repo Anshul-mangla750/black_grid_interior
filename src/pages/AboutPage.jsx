@@ -17,7 +17,7 @@ const AboutPage = () => {
       animate="animate"
       exit="exit"
       variants={pageTransition}
-      style={{ background: 'var(--color-black-primary)', minHeight: '100vh', paddingTop: '8rem' }}
+      style={{ background: 'var(--color-black-primary)', minHeight: '100vh', paddingTop: '5rem' }}
     >
       <div className="container">
         <SectionHeading eyebrow="ABOUT US" heading="WE BRING IMAGINATION TO LIFE" />

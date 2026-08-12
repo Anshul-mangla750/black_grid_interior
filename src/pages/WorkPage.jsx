@@ -15,7 +15,7 @@ const WorkPage = () => {
       animate="animate"
       exit="exit"
       variants={pageTransition}
-      style={{ paddingTop: '6rem', background: 'var(--color-charcoal)' }}
+      style={{ paddingTop: '5rem', background: 'var(--color-charcoal)' }}
     >
       <Projects />
     </motion.div>

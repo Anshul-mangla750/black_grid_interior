@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 
-const SectionHeading = ({ eyebrow, heading, align = 'left', light = false }) => {
+const SectionHeading = ({ eyebrow, heading, align = 'left', light = false, headingClass = 'heading-xl' }) => {
   const headingLines = typeof heading === 'string' ? heading.split('\n') : [heading];
 
   return (
@@ -26,7 +26,7 @@ const SectionHeading = ({ eyebrow, heading, align = 'left', light = false }) => 
         {headingLines.map((line, i) => (
           <div key={i} style={{ overflow: 'hidden' }}>
             <motion.div
-              className="heading-xl"
+              className={headingClass}
               initial={{ y: '100%' }}
               whileInView={{ y: 0 }}
               viewport={{ once: true, margin: '-50px' }}

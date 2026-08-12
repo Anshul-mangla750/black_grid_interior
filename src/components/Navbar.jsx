@@ -15,6 +15,10 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
+  // Only delay navbar entry on the home page (loading screen is shown there)
+  const isHome = location.pathname === '/';
+  const navDelay = isHome ? 2.8 : 0;
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -42,7 +46,7 @@ const Navbar = () => {
         className={`navbar ${isScrolled ? 'scrolled' : ''}`}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1, delay: 2.8, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 1, delay: navDelay, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="container">
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>

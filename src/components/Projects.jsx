@@ -39,7 +39,7 @@ const Projects = () => {
 
   return (
     <>
-      <section className="section-padding" id="work" style={{ background: 'var(--color-charcoal)' }}>
+      <section id="work" style={{ background: 'var(--color-charcoal)', paddingTop: '2.5rem', paddingBottom: 'clamp(4rem, 10vw, 10rem)' }}>
         <div className="container">
           <SectionHeading eyebrow="OUR WORK" heading="SELECTED PROJECTS" />
 

@@ -17,6 +17,7 @@ const Testimonials = () => {
           eyebrow="CLIENT STORIES"
           heading={'BUILT ON VISION.\nDEFINED BY DETAIL.'}
           align="center"
+          headingClass="heading-lg"
         />
 
         {/* Testimonial Slider */}
