@@ -22,12 +22,7 @@ const AboutPage = () => {
       <div className="container">
         <SectionHeading eyebrow="ABOUT US" heading="WE BRING IMAGINATION TO LIFE" />
         
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          gap: '4rem',
-          margin: '4rem 0'
-        }} className="md:grid-cols-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 my-16">
           
           <div>
             <h2 className="heading-md" style={{ color: 'var(--color-off-white)', marginBottom: '1.5rem' }}>
@@ -60,13 +55,6 @@ const AboutPage = () => {
       <StatsMarquee />
       <Process />
       
-      <style>{`
-        @media (min-width: 768px) {
-          .md\\:grid-cols-2 {
-            grid-template-columns: 1fr 1fr !important;
-          }
-        }
-      `}</style>
     </motion.div>
   );
 };

@@ -11,15 +11,7 @@ const Footer = () => {
     <footer className="footer" id="footer">
       <div className="container">
         {/* Main Footer */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          gap: 'clamp(2rem, 4vw, 3rem)',
-          paddingBottom: '3rem',
-          borderBottom: '1px solid rgba(255,255,255,0.06)',
-        }}
-        className="footer-grid"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 pb-12 border-b border-[rgba(255,255,255,0.06)]">
           {/* Logo */}
           <div>
             <div style={{
@@ -92,15 +84,6 @@ const Footer = () => {
           </button>
         </div>
       </div>
-
-      <style>{`
-        @media (min-width: 768px) {
-          .footer-grid {
-            grid-template-columns: 1fr 1fr 1fr !important;
-            align-items: start;
-          }
-        }
-      `}</style>
     </footer>
   );
 };

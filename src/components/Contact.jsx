@@ -57,13 +57,7 @@ const Contact = () => {
 
   return (
     <section id="contact" style={{ background: 'var(--color-black-primary)' }}>
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr',
-        minHeight: '80vh',
-      }}
-      className="contact-layout"
-      >
+      <div className="grid grid-cols-1 md:grid-cols-2 min-h-[80vh]">
         {/* Left Side - Dark */}
         <div style={{
           background: 'var(--color-black-deep)',
@@ -237,13 +231,6 @@ const Contact = () => {
         </div>
       </div>
 
-      <style>{`
-        @media (min-width: 768px) {
-          .contact-layout {
-            grid-template-columns: 1fr 1fr !important;
-          }
-        }
-      `}</style>
     </section>
   );
 };

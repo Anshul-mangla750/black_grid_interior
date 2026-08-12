@@ -6,16 +6,9 @@ const Process = () => {
   return (
     <section className="section-padding" id="process" style={{ background: 'var(--color-black-primary)' }}>
       <div className="container">
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          gap: 'clamp(2rem, 5vw, 4rem)',
-          alignItems: 'start',
-        }}
-        className="process-layout"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">
           {/* Left - Sticky Heading */}
-          <div className="process-heading-sticky">
+          <div className="md:sticky md:top-32">
             <SectionHeading
               eyebrow="OUR PROCESS"
               heading={'FROM IDEA TO\nIMMERSIVE REALITY.'}
@@ -56,18 +49,6 @@ const Process = () => {
           </div>
         </div>
       </div>
-
-      <style>{`
-        @media (min-width: 768px) {
-          .process-layout {
-            grid-template-columns: 1fr 1fr !important;
-          }
-          .process-heading-sticky {
-            position: sticky;
-            top: 8rem;
-          }
-        }
-      `}</style>
     </section>
   );
 };

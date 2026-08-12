@@ -7,14 +7,7 @@ const About = () => {
   return (
     <section className="section-padding" id="about" style={{ background: 'var(--color-black-primary)' }}>
       <div className="container">
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          gap: 'clamp(2rem, 5vw, 4rem)',
-          alignItems: 'center',
-        }}
-        className="md:grid-cols-2"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
           {/* Text Side */}
           <div>
             <SectionHeading
@@ -75,14 +68,6 @@ const About = () => {
           </motion.div>
         </div>
       </div>
-
-      <style>{`
-        @media (min-width: 768px) {
-          .md\\:grid-cols-2 {
-            grid-template-columns: 1fr 1fr !important;
-          }
-        }
-      `}</style>
     </section>
   );
 };

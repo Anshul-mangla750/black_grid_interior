@@ -14,14 +14,7 @@ const Services = () => {
   return (
     <section className="section-padding" id="services" style={{ background: 'var(--color-charcoal)' }}>
       <div className="container">
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          gap: 'clamp(2rem, 5vw, 4rem)',
-          alignItems: 'start',
-        }}
-        className="services-layout"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">
           {/* Left Side */}
           <div>
             <SectionHeading eyebrow="SERVICES" heading="WHAT WE CREATE" />
@@ -31,9 +24,8 @@ const Services = () => {
               style={{
                 overflow: 'hidden',
                 aspectRatio: '4/3',
-                display: 'none',
               }}
-              className="service-image-wrap"
+              className="hidden md:block"
             >
               <AnimatePresence mode="wait">
                 <motion.img
@@ -96,17 +88,6 @@ const Services = () => {
           </div>
         </div>
       </div>
-
-      <style>{`
-        @media (min-width: 768px) {
-          .services-layout {
-            grid-template-columns: 1fr 1fr !important;
-          }
-          .service-image-wrap {
-            display: block !important;
-          }
-        }
-      `}</style>
     </section>
   );
 };

@@ -46,14 +46,7 @@ const ProjectModal = ({ project, onClose }) => {
 
           {/* Project Info */}
           <div className="container" style={{ position: 'relative', marginTop: '-8rem', zIndex: 1 }}>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr',
-              gap: '3rem',
-              maxWidth: '1200px',
-            }}
-            className="modal-grid"
-            >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-[1200px]">
               <div>
                 <motion.span
                   className="eyebrow"
@@ -202,13 +195,6 @@ const ProjectModal = ({ project, onClose }) => {
           </div>
         </div>
 
-        <style>{`
-          @media (min-width: 768px) {
-            .modal-grid {
-              grid-template-columns: 1fr 1fr !important;
-            }
-          }
-        `}</style>
       </motion.div>
     </AnimatePresence>
   );
