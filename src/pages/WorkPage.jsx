@@ -17,7 +17,7 @@ const WorkPage = () => {
       variants={pageTransition}
       style={{ paddingTop: '5rem', background: 'var(--color-charcoal)' }}
     >
-      <Projects />
+      <Projects isHome={false} />
     </motion.div>
   );
 };

@@ -27,7 +27,7 @@ const Home = () => {
       <Hero />
       <About />
       <StatsMarquee />
-      <Projects />
+      <Projects isHome={true} />
       <Process />
       <Services />
       <ParallaxImage 
