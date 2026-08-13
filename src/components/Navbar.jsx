@@ -59,8 +59,10 @@ const Navbar = () => {
                   src={logoImg}
                   alt="Black Grid Interiors"
                   style={{
-                    height: '42px',
+                    height: '54px',
                     width: 'auto',
+                    transform: 'scaleX(1.35)',
+                    transformOrigin: 'left center',
                     filter: 'invert(1)',
                     mixBlendMode: 'screen',
                     objectFit: 'contain',
@@ -143,6 +145,7 @@ const Navbar = () => {
             >
               <a href="https://www.instagram.com/black_grid_interiors?igsh=cGpqaWF4aDJxbjcw" target="_blank" rel="noopener noreferrer" className="footer-link">Instagram</a>
               <a href="https://www.linkedin.com/in/raja-rk-7890a71a0?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" className="footer-link">LinkedIn</a>
+              <a href="https://www.behance.net/rajakhan786" target="_blank" rel="noopener noreferrer" className="footer-link">Behance</a>
             </motion.div>
           </motion.div>
         )}

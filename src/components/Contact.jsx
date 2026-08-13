@@ -198,13 +198,13 @@ const Contact = () => {
           </a>
 
           {/* Email */}
-          <a href="mailto:Rajark9112000@gmail.com" className="contact-info-row" data-cursor="MAIL">
+          <a href="mailto:blackgridinteriors@gmail.com" className="contact-info-row" data-cursor="MAIL">
             <span className="contact-info-row-icon">
               <Mail size={18} strokeWidth={1.5} />
             </span>
             <div className="contact-info-row-text">
               <span className="contact-info-row-label">EMAIL</span>
-              <span className="contact-info-row-value">RAJARK9112000@GMAIL.COM</span>
+              <span className="contact-info-row-value">BLACKGRIDINTERIORS@GMAIL.COM</span>
             </div>
             <ArrowUpRight size={16} className="contact-info-row-arrow" />
           </a>
@@ -251,7 +251,13 @@ const Contact = () => {
             <span>LINKEDIN</span>
           </a>
           <span className="contact-social-sep">•</span>
-          <a href="#" className="contact-social-item" data-cursor="OPEN">
+          <a
+            href="https://www.behance.net/rajakhan786"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contact-social-item"
+            data-cursor="OPEN"
+          >
             <Palette size={16} strokeWidth={1.5} />
             <span>BEHANCE</span>
           </a>

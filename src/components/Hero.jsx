@@ -64,8 +64,10 @@ const Hero = () => {
                 src={logoImg}
                 alt="Black Grid Interiors"
                 style={{
-                  height: '64px',
+                  height: '82px',
                   width: 'auto',
+                  transform: 'scaleX(1.35)',
+                  transformOrigin: 'center',
                   filter: 'invert(1)',
                   mixBlendMode: 'screen',
                   objectFit: 'contain',
@@ -136,7 +138,22 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={heroReady ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              style={{ marginBottom: '1.5rem', color: 'var(--color-beige-warm)' }}
+              style={{
+                marginBottom: '1.5rem',
+                color: '#ffffff',
+                fontWeight: 700,
+                letterSpacing: '0.22em',
+                fontSize: '0.85rem',
+                padding: '0.45rem 1.2rem',
+                background: 'rgba(0, 0, 0, 0.65)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
+                borderRadius: '100px',
+                border: '1px solid rgba(255, 255, 255, 0.25)',
+                display: 'inline-block',
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.5)',
+                textShadow: '0 1px 3px rgba(0, 0, 0, 0.8)',
+              }}
             >
               BLACK GRID INTERIORS
             </motion.div>

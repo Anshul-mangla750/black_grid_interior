@@ -19,8 +19,10 @@ const Footer = () => {
               src={logoImg}
               alt="Black Grid Interiors"
               style={{
-                height: '48px',
+                height: '64px',
                 width: 'auto',
+                transform: 'scaleX(1.35)',
+                transformOrigin: 'left center',
                 filter: 'invert(1)',
                 mixBlendMode: 'screen',
                 objectFit: 'contain',
@@ -40,7 +42,8 @@ const Footer = () => {
           <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
             <a href="https://www.instagram.com/black_grid_interiors?igsh=cGpqaWF4aDJxbjcw" target="_blank" rel="noopener noreferrer" className="footer-link" data-cursor="OPEN">Instagram</a>
             <a href="https://www.linkedin.com/in/raja-rk-7890a71a0?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" className="footer-link" data-cursor="OPEN">LinkedIn</a>
-            <a href="mailto:Rajark9112000@gmail.com" className="footer-link" data-cursor="OPEN">Email</a>
+            <a href="https://www.behance.net/rajakhan786" target="_blank" rel="noopener noreferrer" className="footer-link" data-cursor="OPEN">Behance</a>
+            <a href="mailto:blackgridinteriors@gmail.com" className="footer-link" data-cursor="OPEN">Email</a>
           </div>
         </div>
 
