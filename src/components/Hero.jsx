@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import logoImg from '../assets/logo.png';
+
 const HERO_IMAGE = 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80';
 
 const Hero = () => {
@@ -56,9 +58,19 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -30 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
             >
-              <div className="loading-logo">SPACECRAFT</div>
-              <div className="loading-sub">3D INTERIORS</div>
+              <img
+                src={logoImg}
+                alt="Black Grid Interiors"
+                style={{
+                  height: '64px',
+                  width: 'auto',
+                  filter: 'invert(1)',
+                  mixBlendMode: 'screen',
+                  objectFit: 'contain',
+                }}
+              />
             </motion.div>
             <motion.div
               initial={{ scaleX: 0 }}
@@ -126,7 +138,7 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               style={{ marginBottom: '1.5rem', color: 'var(--color-beige-warm)' }}
             >
-              3D INTERIOR VISUALIZATION STUDIO
+              BLACK GRID INTERIORS
             </motion.div>
 
             {/* Headline */}

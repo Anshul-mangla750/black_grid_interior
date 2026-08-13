@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowUp } from 'lucide-react';
+import logoImg from '../assets/logo.png';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -14,24 +15,17 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 pb-12 border-b border-[rgba(255,255,255,0.06)]">
           {/* Logo */}
           <div>
-            <div style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: '1.4rem',
-              fontWeight: 800,
-              letterSpacing: '-0.03em',
-              color: 'var(--color-off-white)',
-              lineHeight: 1,
-            }}>
-              SPACECRAFT
-            </div>
-            <div style={{
-              fontSize: '0.55rem',
-              letterSpacing: '0.25em',
-              color: 'var(--color-gray-muted)',
-              marginTop: '4px',
-            }}>
-              3D INTERIORS
-            </div>
+            <img
+              src={logoImg}
+              alt="Black Grid Interiors"
+              style={{
+                height: '48px',
+                width: 'auto',
+                filter: 'invert(1)',
+                mixBlendMode: 'screen',
+                objectFit: 'contain',
+              }}
+            />
           </div>
 
           {/* Navigation */}
@@ -44,9 +38,9 @@ const Footer = () => {
 
           {/* Social */}
           <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-            <a href="#" className="footer-link" data-cursor="OPEN">Instagram</a>
-            <a href="#" className="footer-link" data-cursor="OPEN">LinkedIn</a>
-            <a href="mailto:hello@spacecraft3d.com" className="footer-link" data-cursor="OPEN">Email</a>
+            <a href="https://www.instagram.com/black_grid_interiors?igsh=cGpqaWF4aDJxbjcw" target="_blank" rel="noopener noreferrer" className="footer-link" data-cursor="OPEN">Instagram</a>
+            <a href="https://www.linkedin.com/in/raja-rk-7890a71a0?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" className="footer-link" data-cursor="OPEN">LinkedIn</a>
+            <a href="mailto:Rajark9112000@gmail.com" className="footer-link" data-cursor="OPEN">Email</a>
           </div>
         </div>
 
@@ -64,7 +58,7 @@ const Footer = () => {
             letterSpacing: '0.1em',
             color: 'var(--color-gray-mid)',
           }}>
-            © 2026 Spacecraft 3D Interiors. All rights reserved.
+            © 2026 Black Grid Interiors. All rights reserved.
           </span>
           <button
             onClick={scrollToTop}

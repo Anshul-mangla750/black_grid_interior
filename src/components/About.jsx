@@ -23,7 +23,7 @@ const About = () => {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               style={{ maxWidth: '500px', marginBottom: '2rem' }}
             >
-              Spacecraft 3D Interiors is a creative visualization studio specializing in
+              Black Grid Interiors is a creative visualization studio specializing in
               photorealistic 3D interior visualization and design. We help architects,
               designers and businesses see their spaces come to life before they are built.
             </motion.p>

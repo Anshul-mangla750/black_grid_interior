@@ -3,6 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
+import logoImg from '../assets/logo.png';
+
 const navItems = [
   { name: 'HOME', path: '/' },
   { name: 'ABOUT', path: '/about' },
@@ -51,27 +53,19 @@ const Navbar = () => {
         <div className="container">
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             {/* Logo */}
-            <Link to="/" style={{ textDecoration: 'none' }} data-cursor="HOME">
-              <motion.div>
-                <div style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: 'clamp(1.1rem, 1.5vw, 1.4rem)',
-                  fontWeight: 800,
-                  letterSpacing: '-0.03em',
-                  color: 'var(--color-off-white)',
-                  lineHeight: 1,
-                }}>
-                  SPACECRAFT
-                </div>
-                <div style={{
-                  fontSize: '0.55rem',
-                  letterSpacing: '0.25em',
-                  color: 'var(--color-gray-muted)',
-                  marginTop: '2px',
-                  fontWeight: 500,
-                }}>
-                  3D INTERIORS
-                </div>
+            <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.6rem' }} data-cursor="HOME">
+              <motion.div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                <img
+                  src={logoImg}
+                  alt="Black Grid Interiors"
+                  style={{
+                    height: '42px',
+                    width: 'auto',
+                    filter: 'invert(1)',
+                    mixBlendMode: 'screen',
+                    objectFit: 'contain',
+                  }}
+                />
               </motion.div>
             </Link>
 
@@ -147,8 +141,8 @@ const Navbar = () => {
                 gap: '2rem',
               }}
             >
-              <span className="footer-link">Instagram</span>
-              <span className="footer-link">LinkedIn</span>
+              <a href="https://www.instagram.com/black_grid_interiors?igsh=cGpqaWF4aDJxbjcw" target="_blank" rel="noopener noreferrer" className="footer-link">Instagram</a>
+              <a href="https://www.linkedin.com/in/raja-rk-7890a71a0?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" className="footer-link">LinkedIn</a>
             </motion.div>
           </motion.div>
         )}

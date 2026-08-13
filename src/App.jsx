@@ -5,6 +5,7 @@ import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import CustomCursor from './components/CustomCursor';
 import Footer from './components/Footer';
+import WhatsAppButton from './components/WhatsAppButton';
 import Home from './pages/Home';
 import AboutPage from './pages/AboutPage';
 import WorkPage from './pages/WorkPage';
@@ -55,6 +56,7 @@ function App() {
         </Routes>
       </AnimatePresence>
       <Footer />
+      <WhatsAppButton />
     </>
   );
 }

@@ -29,7 +29,7 @@ const AboutPage = () => {
               OUR PHILOSOPHY
             </h2>
             <p className="text-body" style={{ marginBottom: '1.5rem' }}>
-              At Spacecraft 3D Interiors, we believe listless structures deserve breathtaking visualization. 
+              At Black Grid Interiors, we believe listless structures deserve breathtaking visualization. 
               Our work merges high-fidelity rendering technology with an designer's eye for lighting, 
               texture, and spatial dynamics.
             </p>

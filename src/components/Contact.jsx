@@ -71,6 +71,20 @@ const Contact = () => {
     const errs = validate(3);
     setErrors(errs);
     if (Object.keys(errs).length === 0) {
+      // Format clean, structured WhatsApp message
+      const waText = encodeURIComponent(
+        `*New Project Inquiry — Black Grid Interiors*\n\n` +
+        `👤 *Name:* ${formData.name}\n` +
+        `✉️ *Email:* ${formData.email}\n` +
+        `📞 *Phone:* ${formData.phone || 'N/A'}\n` +
+        `🏛️ *Project Type:* ${formData.projectType || 'N/A'}\n` +
+        `💰 *Estimated Budget:* ${formData.budget || 'N/A'}\n\n` +
+        `📝 *Project Description:*\n${formData.message}`
+      );
+
+      // Launch WhatsApp directly
+      window.open(`https://wa.me/917982981104?text=${waText}`, '_blank', 'noopener,noreferrer');
+
       setStatus('success');
       setTimeout(() => {
         setStatus(null);
@@ -172,25 +186,25 @@ const Contact = () => {
           transition={{ duration: 0.7, delay: 1.0 }}
         >
           {/* Phone */}
-          <a href="tel:+919876543210" className="contact-info-row" data-cursor="CALL">
+          <a href="tel:+917982981104" className="contact-info-row" data-cursor="CALL">
             <span className="contact-info-row-icon">
               <Phone size={18} strokeWidth={1.5} />
             </span>
             <div className="contact-info-row-text">
               <span className="contact-info-row-label">PHONE</span>
-              <span className="contact-info-row-value">+91 98765 43210</span>
+              <span className="contact-info-row-value">+91 79829 81104</span>
             </div>
             <ArrowUpRight size={16} className="contact-info-row-arrow" />
           </a>
 
           {/* Email */}
-          <a href="mailto:hello@spacecraft3d.com" className="contact-info-row" data-cursor="MAIL">
+          <a href="mailto:Rajark9112000@gmail.com" className="contact-info-row" data-cursor="MAIL">
             <span className="contact-info-row-icon">
               <Mail size={18} strokeWidth={1.5} />
             </span>
             <div className="contact-info-row-text">
               <span className="contact-info-row-label">EMAIL</span>
-              <span className="contact-info-row-value">HELLO@SPACECRAFT3D.COM</span>
+              <span className="contact-info-row-value">RAJARK9112000@GMAIL.COM</span>
             </div>
             <ArrowUpRight size={16} className="contact-info-row-arrow" />
           </a>
@@ -202,7 +216,7 @@ const Contact = () => {
             </span>
             <div className="contact-info-row-text">
               <span className="contact-info-row-label">LOCATION</span>
-              <span className="contact-info-row-value">MUMBAI, INDIA</span>
+              <span className="contact-info-row-value">SEC 38, FARIDABAD</span>
             </div>
             <ArrowUpRight size={16} className="contact-info-row-arrow" />
           </div>
@@ -215,12 +229,24 @@ const Contact = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.2 }}
         >
-          <a href="#" className="contact-social-item" data-cursor="OPEN">
+          <a
+            href="https://www.instagram.com/black_grid_interiors?igsh=cGpqaWF4aDJxbjcw"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contact-social-item"
+            data-cursor="OPEN"
+          >
             <Globe size={16} strokeWidth={1.5} />
             <span>INSTAGRAM</span>
           </a>
           <span className="contact-social-sep">•</span>
-          <a href="#" className="contact-social-item" data-cursor="OPEN">
+          <a
+            href="https://www.linkedin.com/in/raja-rk-7890a71a0?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contact-social-item"
+            data-cursor="OPEN"
+          >
             <ExternalLink size={16} strokeWidth={1.5} />
             <span>LINKEDIN</span>
           </a>
@@ -457,7 +483,7 @@ const Contact = () => {
                         <input
                           type="tel"
                           className="contact-field-input"
-                          placeholder="+91 98765 43210"
+                          placeholder="+91 79829 81104"
                           value={formData.phone}
                           onChange={(e) => handleChange('phone', e.target.value)}
                         />
@@ -605,9 +631,10 @@ const Contact = () => {
                     data-cursor="SEND"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.97 }}
+                    style={{ background: '#25D366', color: '#ffffff' }}
                   >
                     <Send size={16} />
-                    <span>SEND MESSAGE</span>
+                    <span>SEND VIA WHATSAPP</span>
                   </motion.button>
                 )}
               </div>
