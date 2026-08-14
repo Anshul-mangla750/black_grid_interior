@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, ShieldCheck, Award, MapPin } from 'lucide-react';
 
 import logoImg from '../assets/logo.png';
 
@@ -41,7 +42,10 @@ const Hero = () => {
     return () => window.removeEventListener('mousemove', handleMouse);
   }, [isMobile]);
 
-  const headlineWords = ['SEE YOUR SPACE', 'BEFORE', 'IT EXISTS.'];
+  const headlineWords = [
+    'CRAFTING LUXURY INTERIORS',
+    '& ARCHITECTURAL FACADES.'
+  ];
 
   return (
     <>
@@ -62,7 +66,7 @@ const Hero = () => {
             >
               <img
                 src={logoImg}
-                alt="Black Grid Interiors"
+                alt="Black Grid Interior"
                 style={{
                   height: '82px',
                   width: 'auto',
@@ -112,15 +116,20 @@ const Hero = () => {
           >
             <img
               src={HERO_IMAGE}
-              alt="Luxury modern interior with warm lighting and contemporary furniture"
+              alt="Black Grid Interior - Luxury Modern Architecture and Spatial Visualization"
               loading="eager"
               style={{ width: '100%', height: '100vh', objectFit: 'cover' }}
             />
           </motion.div>
         </motion.div>
 
-        {/* Overlay */}
-        <div className="hero-overlay" />
+        {/* Dynamic Gradient Overlay */}
+        <div
+          className="hero-overlay"
+          style={{
+            background: 'linear-gradient(180deg, rgba(8,8,10,0.72) 0%, rgba(12,12,14,0.65) 50%, rgba(10,10,12,0.92) 100%)',
+          }}
+        />
 
         {/* Content */}
         <div className="hero-content container" style={{ width: '100%' }}>
@@ -132,38 +141,22 @@ const Hero = () => {
               transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
             }}
           >
-            {/* Eyebrow */}
+            {/* Eyebrow Badge */}
             <motion.div
-              className="eyebrow"
+              className="hero-badge"
               initial={{ opacity: 0, y: 20 }}
               animate={heroReady ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              style={{
-                marginBottom: '1.5rem',
-                color: '#ffffff',
-                fontWeight: 700,
-                letterSpacing: '0.22em',
-                fontSize: '0.85rem',
-                padding: '0.45rem 1.2rem',
-                background: 'rgba(0, 0, 0, 0.65)',
-                backdropFilter: 'blur(10px)',
-                WebkitBackdropFilter: 'blur(10px)',
-                borderRadius: '100px',
-                border: '1px solid rgba(255, 255, 255, 0.25)',
-                display: 'inline-block',
-                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.5)',
-                textShadow: '0 1px 3px rgba(0, 0, 0, 0.8)',
-              }}
             >
-              BLACK GRID INTERIORS
+              <span>BLACK GRID INTERIOR</span>
             </motion.div>
 
             {/* Headline */}
-            <div style={{ marginBottom: '1.5rem' }}>
+            <div className="hero-heading-wrapper">
               {headlineWords.map((word, i) => (
                 <div key={i} style={{ overflow: 'hidden' }}>
                   <motion.div
-                    className="heading-display"
+                    className="heading-display hero-heading-text"
                     initial={{ y: '110%' }}
                     animate={heroReady ? { y: 0 } : {}}
                     transition={{
@@ -171,7 +164,9 @@ const Hero = () => {
                       delay: 0.5 + i * 0.12,
                       ease: [0.16, 1, 0.3, 1],
                     }}
-                    style={{ color: 'var(--color-white-pure)' }}
+                    style={{
+                      color: i === 1 ? 'var(--color-gold, #c5a059)' : 'var(--color-white-pure)',
+                    }}
                   >
                     {word}
                   </motion.div>
@@ -181,34 +176,49 @@ const Hero = () => {
 
             {/* Description */}
             <motion.p
+              className="hero-desc"
               initial={{ opacity: 0, y: 20 }}
               animate={heroReady ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              style={{
-                fontSize: 'clamp(0.85rem, 1.1vw, 1.05rem)',
-                lineHeight: 1.7,
-                color: 'var(--color-beige-warm)',
-                maxWidth: '480px',
-                marginBottom: '2rem',
-              }}
             >
-              We create photorealistic 3D interior visualizations that bring your vision to life.
+              Black Grid Interior is a premier architectural and interior design studio specializing in bespoke luxury residences, corporate executive spaces, architectural elevation rendering, and photorealistic 3D spatial planning.
             </motion.p>
 
-            {/* Buttons */}
+            {/* Action Buttons */}
             <motion.div
+              className="hero-actions"
               initial={{ opacity: 0, y: 20 }}
               animate={heroReady ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
-              style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}
             >
               <a href="/work" className="btn-primary" data-cursor="VIEW">
-                VIEW OUR WORK
-                <span className="btn-arrow">→</span>
+                EXPLORE PORTFOLIO
+                <ArrowRight size={16} className="btn-arrow" />
               </a>
               <a href="/contact" className="btn-outline" data-cursor="OPEN">
-                GET IN TOUCH
+                BOOK CONSULTATION
               </a>
+            </motion.div>
+
+            {/* Service & Experience Badges */}
+            <motion.div
+              className="hero-badges"
+              initial={{ opacity: 0, y: 20 }}
+              animate={heroReady ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 1.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="hero-badge-item">
+                <Award size={15} style={{ color: 'var(--color-gold, #c5a059)' }} />
+                <span>7+ Years Design Mastery</span>
+              </div>
+              <div className="hero-badge-item">
+                <ShieldCheck size={15} style={{ color: 'var(--color-gold, #c5a059)' }} />
+                <span>60+ 3D Renderings</span>
+              </div>
+              <div className="hero-badge-item">
+                <MapPin size={15} style={{ color: 'var(--color-gold, #c5a059)' }} />
+                <span>Faridabad & Delhi NCR</span>
+              </div>
             </motion.div>
           </motion.div>
         </div>
@@ -230,3 +240,4 @@ const Hero = () => {
 };
 
 export default Hero;
+

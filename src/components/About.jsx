@@ -12,7 +12,7 @@ const About = () => {
           <div>
             <SectionHeading
               eyebrow="WHO WE ARE"
-              heading={'WE DESIGN.\nWE VISUALIZE.\nWE INSPIRE.'}
+              heading={'WE DESIGN.\nWE PLAN.\nWE VISUALIZE.'}
             />
 
             <motion.p
@@ -21,11 +21,9 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              style={{ maxWidth: '500px', marginBottom: '2rem' }}
+              style={{ maxWidth: '520px', marginBottom: '2rem' }}
             >
-              Black Grid Interiors is a creative visualization studio specializing in
-              photorealistic 3D interior visualization and design. We help architects,
-              designers and businesses see their spaces come to life before they are built.
+              With 7+ years of experience, Black Grid Interiors specializes in luxury interior design, interior architecture, commercial interior design, architectural elevation, and photorealistic 3D visualization for residential and commercial landmarks.
             </motion.p>
 
             <motion.a

@@ -1,16 +1,82 @@
-// Auto-generated projects data including all photos & real_work
-const photoModules = import.meta.glob('../assets/photos/*.jpg', { eager: true, import: 'default' });
+// Image modules from organized subfolders
+const exteriorModules = import.meta.glob('../assets/photos/exterior/*.jpg', { eager: true, import: 'default' });
+const interiorModules = import.meta.glob('../assets/photos/interior/*.jpg', { eager: true, import: 'default' });
 const realWorkModules = import.meta.glob('../assets/real_work/*.jpg', { eager: true, import: 'default' });
 
 function getImg(key) {
-  if (key.startsWith('photos/')) {
-    return photoModules[`../assets/${key}`] || Object.values(photoModules)[0];
+  if (key.startsWith('photos/exterior/')) {
+    return exteriorModules[`../assets/${key}`] || Object.values(exteriorModules)[0];
+  }
+  if (key.startsWith('photos/interior/')) {
+    return interiorModules[`../assets/${key}`] || Object.values(interiorModules)[0];
   }
   if (key.startsWith('real_work/')) {
     return realWorkModules[`../assets/${key}`] || Object.values(realWorkModules)[0];
   }
   return '';
 }
+
+// Auto-generate exterior projects from photos/exterior/ folder
+// Auto-generate exterior projects from photos/exterior/ folder
+const exteriorKeys = Object.keys(exteriorModules).filter((k) => !k.includes('(1)')).sort();
+const autoExteriorProjects = exteriorKeys.map((path, i) => {
+  const filename = path.split('/').pop();
+  return {
+    id: 1000 + i,
+    title: `EXTERIOR ELEVATION ${String(i + 1).padStart(2, '0')}`,
+    category: 'Architectural Elevation',
+    filter: 'elevation',
+    mainCategory: 'exterior',
+    location: 'Faridabad, HR',
+    year: '2025',
+    imageKey: `photos/exterior/${filename}`,
+    heroImageKey: `photos/exterior/${filename}`,
+    description: 'Architectural elevation and facade design featuring premium stone cladding, CNC lattice screens, and precision exterior lighting.',
+    concept: 'Stately exterior facade engineered with high precision, warm ambient lighting, and rich material finishes.',
+    galleryKeys: [`photos/exterior/${filename}`],
+    details: {
+      area: '4,000–8,000 sq ft',
+      duration: '3–5 weeks',
+      style: 'Luxury Facade',
+      services: 'Architectural Elevation, 3D Exterior Render',
+    },
+  };
+});
+
+// Auto-generate interior projects from photos/interior/ folder (filtering duplicate OS copies)
+const interiorKeys = Object.keys(interiorModules).filter((k) => !k.includes('(1)')).sort();
+const interiorCategories = [
+  { filter: 'living', category: 'Living Space Design', title: 'LUXURY LIVING INTERIOR', style: 'Modern Luxury', services: '3D Interior Visualization, Interior Design' },
+  { filter: 'bedroom', category: 'Bedroom Suite Design', title: 'PREMIUM BEDROOM SUITE', style: 'Contemporary Luxury', services: '3D Interior Visualization, Bedroom Design' },
+  { filter: 'kitchen', category: 'Kitchen & Dining', title: 'DESIGNER KITCHEN SPACE', style: 'Contemporary Minimalist', services: '3D Interior Visualization, Kitchen Design' },
+  { filter: 'office', category: 'Executive Workspace', title: 'CORPORATE OFFICE DESIGN', style: 'Modern Professional', services: '3D Interior Visualization, Office Design' },
+  { filter: 'commercial', category: 'Commercial & Retail', title: 'COMMERCIAL INTERIOR', style: 'Luxury Commercial', services: '3D Interior Visualization, Commercial Design' },
+];
+const autoInteriorProjects = interiorKeys.map((path, i) => {
+  const filename = path.split('/').pop();
+  const cat = interiorCategories[i % interiorCategories.length];
+  return {
+    id: 2000 + i,
+    title: `${cat.title} ${String(i + 1).padStart(2, '0')}`,
+    category: cat.category,
+    filter: cat.filter,
+    mainCategory: 'interior',
+    location: 'Faridabad, HR',
+    year: '2025',
+    imageKey: `photos/interior/${filename}`,
+    heroImageKey: `photos/interior/${filename}`,
+    description: 'Bespoke interior design visualization featuring tailored textures, custom ambient lighting, and photorealistic 3D spatial planning.',
+    concept: 'Engineered with attention to material honesty, ergonomic proportions, and mood-centric illumination to communicate spatial luxury.',
+    galleryKeys: [`photos/interior/${filename}`],
+    details: {
+      area: '1,500–4,000 sq ft',
+      duration: '3–5 weeks',
+      style: cat.style,
+      services: cat.services,
+    },
+  };
+});
+
 
 const rawProjects = [
   {
@@ -1154,12 +1220,35 @@ const rawProjects = [
   }
 ];
 
-export const projects = rawProjects.map(p => ({
+// Resolve images for auto-generated projects
+const resolvedExterior = autoExteriorProjects.map(p => ({
   ...p,
   image: getImg(p.imageKey),
   heroImage: getImg(p.heroImageKey),
-  gallery: p.galleryKeys.map(k => getImg(k))
+  gallery: p.galleryKeys.map(k => getImg(k)),
 }));
+
+const resolvedInterior = autoInteriorProjects.map(p => ({
+  ...p,
+  image: getImg(p.imageKey),
+  heroImage: getImg(p.heroImageKey),
+  gallery: p.galleryKeys.map(k => getImg(k)),
+}));
+
+// real_work projects (hand-curated elevation showcases)
+const realWorkProjects = rawProjects.filter(p => p.imageKey.startsWith('real_work/')).map(p => ({
+  ...p,
+  image: getImg(p.imageKey),
+  heroImage: getImg(p.heroImageKey),
+  gallery: p.galleryKeys.map(k => getImg(k)),
+}));
+
+// Final merged list: real_work elevations first, then auto exterior, then auto interior
+export const projects = [
+  ...realWorkProjects,
+  ...resolvedExterior,
+  ...resolvedInterior,
+];
 
 export const testimonials = [
   {
@@ -1189,59 +1278,73 @@ export const services = [
   {
     id: 1,
     number: '01',
-    title: '3D INTERIOR VISUALIZATION',
-    description: 'Photorealistic interiors that communicate the final design before construction. We bring every material, texture, and light source to life with extraordinary precision.',
+    title: 'INTERIOR DESIGN & TURNKEY DECOR',
+    description: 'Bespoke interior design, custom furniture curation, material selection, acoustic integration, and complete aesthetic styling for luxury residences and apartments.',
     image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80',
   },
   {
     id: 2,
     number: '02',
-    title: 'ARCHITECTURAL VISUALIZATION',
-    description: 'High-end visual representations for architects and developers. From exterior façades to interior atriums, we create visuals that sell the vision.',
+    title: 'INTERIOR ARCHITECTURE & SPATIAL PLANNING',
+    description: 'Structural spatial planning, wall layout optimization, ceiling lighting design, 2D working floor plans, and comprehensive interior architecture engineering.',
     image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
   },
   {
     id: 3,
     number: '03',
-    title: 'PRODUCT VISUALIZATION',
-    description: 'Detailed environments for furniture, materials and interior products. We place every product in its ideal context, showcasing quality and craftsmanship.',
-    image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80',
+    title: 'COMMERCIAL INTERIOR DESIGN & HOSPITALITY',
+    description: 'High-impact commercial interior design for luxury corporate offices, retail showrooms, boutique hotels, restaurants, and executive reception lounges.',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80',
   },
   {
     id: 4,
     number: '04',
-    title: 'COMMERCIAL SPACES',
-    description: 'Visualization for offices, showrooms, hospitality and retail spaces. We help commercial clients make confident decisions through immersive visual storytelling.',
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80',
+    title: '3D VISUALIZATION & ARCHITECTURAL RENDERING',
+    description: 'Hyper-photorealistic 3D interior & exterior renders, lighting simulations, material moodboards, and 360° virtual walkthroughs for pre-construction clarity.',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
+  },
+  {
+    id: 5,
+    number: '05',
+    title: 'ARCHITECTURAL ELEVATION & FACADE DESIGN',
+    description: 'Stately exterior elevation concepts, CNC brass lattice screens, neoclassical and modern facade detailing, stone cladding, and exterior illumination.',
+    image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80',
+  },
+  {
+    id: 6,
+    number: '06',
+    title: 'LANDSCAPE ARCHITECTURE & TERRAIN LIGHTING',
+    description: 'Biophilic terrace design, outdoor garden landscapes, exterior facade lighting engineering, and site terrain planning.',
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
   },
 ];
 
 export const processSteps = [
   {
     number: '01',
-    title: 'DISCOVER',
-    description: 'Understanding the space, floor plans, facade requirements, and visual direction with the client.',
+    title: 'DISCOVER & CONSULT',
+    description: 'Analyzing site conditions, structural floor plans, architectural elevation requirements, and client design aspirational goals.',
   },
   {
     number: '02',
-    title: 'DESIGN',
-    description: 'Developing architectural composition, stone textures, pillar details, gold lattice screens, and lighting schemes.',
+    title: 'ARCHITECTURAL SCHEMATICS',
+    description: 'Developing spatial layouts, exterior facade proportions, stone textures, CNC screen accents, and lighting concepts.',
   },
   {
     number: '03',
-    title: 'VISUALIZE',
-    description: 'Creating high-resolution photorealistic 3D renders capturing daylight reflections and warm night accent lighting.',
+    title: 'HIGH-FIDELITY VISUALIZATION',
+    description: 'Engineering ultra-high resolution 3D renders capturing daylight reflections, night accent lighting, and exact material specifications.',
   },
   {
     number: '04',
-    title: 'DELIVER',
-    description: 'Delivering presentation-ready, ultra-high definition imagery for site execution and client presentations.',
+    title: 'EXECUTION & DELIVERY',
+    description: 'Delivering detailed architectural working drawings, presentation renders, and site execution guidelines for seamless realization.',
   },
 ];
 
 export const stats = [
-  { number: '100+', label: 'ELEVATIONS' },
-  { number: '50+', label: 'HAPPY CLIENTS' },
-  { number: '15+', label: 'CITIES' },
-  { number: '5+', label: 'YEARS EXPERIENCE' },
+  { number: '7+', label: 'YEARS OF EXPERIENCE' },
+  { number: '250+', label: 'INTERIOR DESIGNS' },
+  { number: '180+', label: '3D VISUALIZATIONS' },
+  { number: '120+', label: 'COMMERCIAL SPACES' },
 ];

@@ -29,13 +29,10 @@ const AboutPage = () => {
               OUR PHILOSOPHY
             </h2>
             <p className="text-body" style={{ marginBottom: '1.5rem' }}>
-              At Black Grid Interiors, we believe listless structures deserve breathtaking visualization. 
-              Our work merges high-fidelity rendering technology with an designer's eye for lighting, 
-              texture, and spatial dynamics.
+              At Black Grid Interiors, we bring over 7+ years of experience across luxury interior design, interior architecture, commercial interior design, architectural elevation, and photorealistic 3D visualization. We deliver end-to-end design clarity from initial floor planning to complete turnkey execution.
             </p>
             <p className="text-body">
-              For over half a decade, our global client database of distinguished designers, realtors, and 
-              visionaries have trusted us to execute high-impact spatial design renders.
+              With 7+ years of expertise, leading architects, real estate developers, and private homeowners trust us to transform complex spatial ideas into stunning visual realities.
             </p>
           </div>
 

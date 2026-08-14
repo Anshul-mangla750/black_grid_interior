@@ -58,15 +58,7 @@ const Navbar = () => {
                 <img
                   src={logoImg}
                   alt="Black Grid Interiors"
-                  style={{
-                    height: '54px',
-                    width: 'auto',
-                    transform: 'scaleX(1.35)',
-                    transformOrigin: 'left center',
-                    filter: 'invert(1)',
-                    mixBlendMode: 'screen',
-                    objectFit: 'contain',
-                  }}
+                  className="nav-logo-img"
                 />
               </motion.div>
             </Link>

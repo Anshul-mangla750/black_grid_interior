@@ -1,14 +1,14 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
-import { ChevronLeft, ChevronRight, ArrowRight, Grid, MoveHorizontal, Sparkles } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight, Grid, MoveHorizontal, Building2, Home as HomeIcon, Layers } from 'lucide-react';
 import SectionHeading from './SectionHeading';
 import ProjectCard from './ProjectCard';
 import ProjectModal from './ProjectModal';
 import { projects } from '../data/projects';
 
-const filters = [
-  { key: 'all', label: 'ALL' },
+const allFilters = [
+  { key: 'all', label: 'ALL WORK' },
   { key: 'living', label: 'LIVING' },
   { key: 'bedroom', label: 'BEDROOM' },
   { key: 'kitchen', label: 'KITCHEN' },
@@ -17,17 +17,55 @@ const filters = [
   { key: 'elevation', label: 'ELEVATION' },
 ];
 
+const interiorFilters = [
+  { key: 'all', label: 'ALL INTERIORS' },
+  { key: 'living', label: 'LIVING' },
+  { key: 'bedroom', label: 'BEDROOM' },
+  { key: 'kitchen', label: 'KITCHEN' },
+  { key: 'office', label: 'OFFICE' },
+  { key: 'commercial', label: 'COMMERCIAL' },
+];
+
+const exteriorFilters = [
+  { key: 'all', label: 'ALL EXTERIORS' },
+  { key: 'elevation', label: 'ELEVATION & FACADES' },
+];
+
 const Projects = ({ isHome = false }) => {
+  const [mainCategory, setMainCategory] = useState('all'); // 'all', 'interior', 'exterior'
   const [activeFilter, setActiveFilter] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
   const [viewMode, setViewMode] = useState('swipe'); // 'swipe' or 'grid'
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef(null);
 
-  const filteredProjects =
-    activeFilter === 'all'
-      ? projects
-      : projects.filter((p) => p.filter === activeFilter);
+  // Compute counts — strictly by folder source
+  const totalCount = projects.length;
+  const exteriorCount = projects.filter((p) => p.imageKey?.startsWith('photos/exterior/')).length;
+  const interiorCount = projects.filter((p) => p.imageKey?.startsWith('photos/interior/')).length;
+
+  // Filter projects based on mainCategory and activeFilter
+  const filteredProjects = projects.filter((p) => {
+    // Exterior tab: ONLY photos/exterior/ images
+    if (mainCategory === 'exterior') {
+      if (!p.imageKey?.startsWith('photos/exterior/')) return false;
+    }
+    // Interior tab: ONLY photos/interior/ images
+    if (mainCategory === 'interior') {
+      if (!p.imageKey?.startsWith('photos/interior/')) return false;
+    }
+    // Sub-filter
+    if (activeFilter !== 'all' && p.filter !== activeFilter) return false;
+    return true;
+  });
+
+  // Select active filter buttons array based on mainCategory
+  const currentFilters =
+    mainCategory === 'interior'
+      ? interiorFilters
+      : mainCategory === 'exterior'
+      ? exteriorFilters
+      : allFilters;
 
   // Limit to 8 items on Home Page
   const displayProjects = isHome ? filteredProjects.slice(0, 8) : filteredProjects;
@@ -35,7 +73,7 @@ const Projects = ({ isHome = false }) => {
   // Reset slider index when filter changes
   useEffect(() => {
     setCurrentIndex(0);
-  }, [activeFilter]);
+  }, [activeFilter, mainCategory]);
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % displayProjects.length);
@@ -66,7 +104,7 @@ const Projects = ({ isHome = false }) => {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
             <SectionHeading eyebrow="OUR WORK" heading={isHome ? "FEATURED PROJECTS" : "PORTFOLIO & WORK"} />
 
-            {/* View Switcher (Swipe vs Grid) */}
+            {/* View Switcher (Swipe vs Grid on Home Page) */}
             {isHome && (
               <div style={{ display: 'flex', gap: '0.5rem', background: 'rgba(255, 255, 255, 0.05)', padding: '4px', borderRadius: '100px', border: '1px solid rgba(255,255,255,0.08)', marginBottom: '1.5rem' }}>
                 <button
@@ -118,7 +156,133 @@ const Projects = ({ isHome = false }) => {
             )}
           </div>
 
-          {/* Filter Navigation */}
+          {/* MAIN CATEGORY SEGREGATION BUTTONS: ALL vs INTERIOR vs EXTERIOR */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            style={{
+              display: 'flex',
+              gap: '0.75rem',
+              marginBottom: '1.25rem',
+              flexWrap: 'wrap',
+              alignItems: 'center',
+            }}
+          >
+            <button
+              type="button"
+              onClick={() => {
+                setMainCategory('all');
+                setActiveFilter('all');
+              }}
+              style={{
+                padding: '0.65rem 1.4rem',
+                borderRadius: '100px',
+                fontSize: '0.8rem',
+                fontWeight: 700,
+                letterSpacing: '0.1em',
+                border: mainCategory === 'all' ? '1px solid var(--color-gold, #c5a059)' : '1px solid rgba(255,255,255,0.15)',
+                background: mainCategory === 'all' ? 'var(--color-gold, #c5a059)' : 'rgba(255,255,255,0.04)',
+                color: mainCategory === 'all' ? '#000000' : '#ffffff',
+                cursor: 'pointer',
+                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                boxShadow: mainCategory === 'all' ? '0 4px 20px rgba(197, 160, 89, 0.35)' : 'none',
+              }}
+            >
+              <Layers size={15} />
+              <span>ALL PROJECTS</span>
+              <span style={{
+                fontSize: '0.7rem',
+                fontWeight: 800,
+                opacity: 0.85,
+                background: mainCategory === 'all' ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.12)',
+                padding: '2px 8px',
+                borderRadius: '10px',
+              }}>
+                {totalCount}
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                setMainCategory('interior');
+                setActiveFilter('all');
+              }}
+              style={{
+                padding: '0.65rem 1.4rem',
+                borderRadius: '100px',
+                fontSize: '0.8rem',
+                fontWeight: 700,
+                letterSpacing: '0.1em',
+                border: mainCategory === 'interior' ? '1px solid var(--color-gold, #c5a059)' : '1px solid rgba(255,255,255,0.15)',
+                background: mainCategory === 'interior' ? 'var(--color-gold, #c5a059)' : 'rgba(255,255,255,0.04)',
+                color: mainCategory === 'interior' ? '#000000' : '#ffffff',
+                cursor: 'pointer',
+                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                boxShadow: mainCategory === 'interior' ? '0 4px 20px rgba(197, 160, 89, 0.35)' : 'none',
+              }}
+            >
+              <HomeIcon size={15} />
+              <span>INTERIOR DESIGN</span>
+              <span style={{
+                fontSize: '0.7rem',
+                fontWeight: 800,
+                opacity: 0.85,
+                background: mainCategory === 'interior' ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.12)',
+                padding: '2px 8px',
+                borderRadius: '10px',
+              }}>
+                {interiorCount}
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                setMainCategory('exterior');
+                setActiveFilter('all');
+              }}
+              style={{
+                padding: '0.65rem 1.4rem',
+                borderRadius: '100px',
+                fontSize: '0.8rem',
+                fontWeight: 700,
+                letterSpacing: '0.1em',
+                border: mainCategory === 'exterior' ? '1px solid var(--color-gold, #c5a059)' : '1px solid rgba(255,255,255,0.15)',
+                background: mainCategory === 'exterior' ? 'var(--color-gold, #c5a059)' : 'rgba(255,255,255,0.04)',
+                color: mainCategory === 'exterior' ? '#000000' : '#ffffff',
+                cursor: 'pointer',
+                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                boxShadow: mainCategory === 'exterior' ? '0 4px 20px rgba(197, 160, 89, 0.35)' : 'none',
+              }}
+            >
+              <Building2 size={15} />
+              <span>EXTERIOR DESIGN</span>
+              <span style={{
+                fontSize: '0.7rem',
+                fontWeight: 800,
+                opacity: 0.85,
+                background: mainCategory === 'exterior' ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.12)',
+                padding: '2px 8px',
+                borderRadius: '10px',
+              }}>
+                {exteriorCount}
+              </span>
+            </button>
+          </motion.div>
+
+          {/* Sub-Filter Navigation */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -131,7 +295,7 @@ const Projects = ({ isHome = false }) => {
               flexWrap: 'wrap',
             }}
           >
-            {filters.map((f) => (
+            {currentFilters.map((f) => (
               <button
                 key={f.key}
                 className={`filter-btn ${activeFilter === f.key ? 'active' : ''}`}
@@ -376,7 +540,6 @@ const Projects = ({ isHome = false }) => {
                   e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.25)';
                 }}
               >
-                <Sparkles size={16} style={{ color: 'var(--color-gold, #c5a059)' }} />
                 <span>EXPLORE ALL PROJECTS ({projects.length}+)</span>
                 <ArrowRight size={18} />
               </Link>

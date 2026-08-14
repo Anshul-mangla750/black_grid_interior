@@ -3,19 +3,19 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Phone, Mail, MapPin, ArrowRight, ArrowLeft, ArrowUpRight,
   Check, Home, Building2, ChefHat, BedDouble, Briefcase,
-  Box, MoreHorizontal, Send, Sparkles, Globe, ExternalLink, Palette,
+  Box, MoreHorizontal, Send, Globe, ExternalLink, Palette,
 } from 'lucide-react';
 
 const HERO_IMAGE = 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80';
 
 const projectTypes = [
-  { label: 'Residential', icon: Home, desc: 'Homes & Apartments' },
-  { label: 'Commercial', icon: Building2, desc: 'Offices & Retail' },
-  { label: 'Kitchen', icon: ChefHat, desc: 'Modern Kitchens' },
-  { label: 'Bedroom', icon: BedDouble, desc: 'Luxurious Bedrooms' },
-  { label: 'Office', icon: Briefcase, desc: 'Workspaces' },
-  { label: '3D Visualization', icon: Box, desc: 'Full 3D Renders' },
-  { label: 'Other', icon: MoreHorizontal, desc: 'Custom Projects' },
+  { label: 'Interior Design', icon: Home, desc: 'Turnkey Residential Decor' },
+  { label: 'Interior Architecture', icon: Building2, desc: 'Structural Spatial Layouts' },
+  { label: 'Commercial Interior Design', icon: Briefcase, desc: 'Offices, Retail & Lounges' },
+  { label: '3D Visualization', icon: Box, desc: 'Photorealistic 3D Renders' },
+  { label: 'Architectural Elevation', icon: Palette, desc: 'Exterior Facade Design' },
+  { label: 'Landscape Architecture', icon: Globe, desc: 'Exterior & Biophilic Spaces' },
+  { label: 'Other Consultancy', icon: MoreHorizontal, desc: 'Custom Architectural Work' },
 ];
 
 const steps = [
