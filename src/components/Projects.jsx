@@ -11,9 +11,6 @@ const allFilters = [
   { key: 'all', label: 'ALL WORK' },
   { key: 'living', label: 'LIVING' },
   { key: 'bedroom', label: 'BEDROOM' },
-  { key: 'kitchen', label: 'KITCHEN' },
-  { key: 'office', label: 'OFFICE' },
-  { key: 'commercial', label: 'COMMERCIAL' },
   { key: 'elevation', label: 'ELEVATION' },
 ];
 
@@ -21,9 +18,6 @@ const interiorFilters = [
   { key: 'all', label: 'ALL INTERIORS' },
   { key: 'living', label: 'LIVING' },
   { key: 'bedroom', label: 'BEDROOM' },
-  { key: 'kitchen', label: 'KITCHEN' },
-  { key: 'office', label: 'OFFICE' },
-  { key: 'commercial', label: 'COMMERCIAL' },
 ];
 
 const exteriorFilters = [
@@ -40,21 +34,21 @@ const Projects = ({ isHome = false }) => {
   const sliderRef = useRef(null);
 
   // Compute counts — strictly by folder source
+  const exteriorProjects = projects.filter((p) => p.imageKey?.startsWith('photos/exterior/'));
+  const interiorProjects = projects.filter((p) => p.imageKey?.startsWith('photos/interior/'));
+
+  const exteriorCount = exteriorProjects.length;
+  const interiorCount = interiorProjects.length;
   const totalCount = projects.length;
-  const exteriorCount = projects.filter((p) => p.imageKey?.startsWith('photos/exterior/')).length;
-  const interiorCount = projects.filter((p) => p.imageKey?.startsWith('photos/interior/')).length;
 
   // Filter projects based on mainCategory and activeFilter
   const filteredProjects = projects.filter((p) => {
-    // Exterior tab: ONLY photos/exterior/ images
     if (mainCategory === 'exterior') {
       if (!p.imageKey?.startsWith('photos/exterior/')) return false;
     }
-    // Interior tab: ONLY photos/interior/ images
     if (mainCategory === 'interior') {
       if (!p.imageKey?.startsWith('photos/interior/')) return false;
     }
-    // Sub-filter
     if (activeFilter !== 'all' && p.filter !== activeFilter) return false;
     return true;
   });
