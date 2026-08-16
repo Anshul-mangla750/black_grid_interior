@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Projects from '../components/Projects';
 
@@ -9,6 +10,10 @@ const pageTransition = {
 };
 
 const WorkPage = () => {
+  useEffect(() => {
+    document.title = 'Portfolio & Projects | Black Grid Interiors — Architectural Visualizations';
+  }, []);
+
   return (
     <motion.div
       initial="initial"

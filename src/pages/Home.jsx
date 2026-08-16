@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
 import About from '../components/About';
@@ -17,6 +18,10 @@ const pageTransition = {
 };
 
 const Home = () => {
+  useEffect(() => {
+    document.title = 'Black Grid Interiors | Architectural Elevation, Interior Design & 3D Visualization Studio';
+  }, []);
+
   return (
     <motion.div
       initial="initial"

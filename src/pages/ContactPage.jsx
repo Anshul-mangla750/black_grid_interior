@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Contact from '../components/Contact';
 
@@ -9,6 +10,10 @@ const pageTransition = {
 };
 
 const ContactPage = () => {
+  useEffect(() => {
+    document.title = 'Contact Us | Black Grid Interiors — Book Architecture Consultancy';
+  }, []);
+
   return (
     <motion.div
       initial="initial"

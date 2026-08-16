@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import SectionHeading from '../components/SectionHeading';
 import Process from '../components/Process';
@@ -11,6 +12,10 @@ const pageTransition = {
 };
 
 const AboutPage = () => {
+  useEffect(() => {
+    document.title = 'About Us | Black Grid Interiors — Luxury Architecture & Spatial Design';
+  }, []);
+
   return (
     <motion.div
       initial="initial"

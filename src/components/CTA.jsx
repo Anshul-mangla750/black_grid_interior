@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const CTA = () => {
@@ -76,13 +77,13 @@ const CTA = () => {
           transition={{ duration: 0.6, delay: 0.7 }}
           style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}
         >
-          <a href="/contact" className="btn-primary" data-cursor="OPEN">
+          <Link to="/contact" className="btn-primary" data-cursor="OPEN">
             START A PROJECT
             <span className="btn-arrow">→</span>
-          </a>
-          <a href="/work" className="btn-outline" data-cursor="VIEW">
+          </Link>
+          <Link to="/work" className="btn-outline" data-cursor="VIEW">
             VIEW OUR WORK
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

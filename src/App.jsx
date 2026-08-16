@@ -53,6 +53,7 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/work" element={<WorkPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="*" element={<Home />} />
         </Routes>
       </AnimatePresence>
       <Footer />

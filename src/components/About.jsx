@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import SectionHeading from './SectionHeading';
 
@@ -26,18 +27,21 @@ const About = () => {
               With 7+ years of experience, Black Grid Interiors specializes in luxury interior design, interior architecture, commercial interior design, architectural elevation, and photorealistic 3D visualization for residential and commercial landmarks.
             </motion.p>
 
-            <motion.a
-              href="/about"
-              className="btn-primary"
-              data-cursor="EXPLORE"
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
             >
-              ABOUT US
-              <span className="btn-arrow">→</span>
-            </motion.a>
+              <Link
+                to="/about"
+                className="btn-primary"
+                data-cursor="EXPLORE"
+              >
+                ABOUT US
+                <span className="btn-arrow">→</span>
+              </Link>
+            </motion.div>
           </div>
 
           {/* Image Side */}

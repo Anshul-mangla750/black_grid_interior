@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ShieldCheck, Award, MapPin } from 'lucide-react';
 
@@ -191,13 +192,13 @@ const Hero = () => {
               animate={heroReady ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
             >
-              <a href="/work" className="btn-primary" data-cursor="VIEW">
+              <Link to="/work" className="btn-primary" data-cursor="VIEW">
                 EXPLORE PORTFOLIO
                 <ArrowRight size={16} className="btn-arrow" />
-              </a>
-              <a href="/contact" className="btn-outline" data-cursor="OPEN">
+              </Link>
+              <Link to="/contact" className="btn-outline" data-cursor="OPEN">
                 BOOK CONSULTATION
-              </a>
+              </Link>
             </motion.div>
 
             {/* Service & Experience Badges */}
