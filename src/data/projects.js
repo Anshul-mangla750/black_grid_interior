@@ -1,140 +1,140 @@
-// Image modules from organized subfolders
-const exteriorModules = import.meta.glob('../assets/photos/exterior/*.jpg', { eager: true, import: 'default' });
-const interiorModules = import.meta.glob('../assets/photos/interior/*.jpg', { eager: true, import: 'default' });
-const realWorkModules = import.meta.glob('../assets/real_work/*.jpg', { eager: true, import: 'default' });
-
-function getImg(key) {
-  if (key.startsWith('photos/exterior/')) {
-    return exteriorModules[`../assets/${key}`] || Object.values(exteriorModules)[0];
-  }
-  if (key.startsWith('photos/interior/')) {
-    return interiorModules[`../assets/${key}`] || Object.values(interiorModules)[0];
-  }
-  if (key.startsWith('real_work/')) {
-    return realWorkModules[`../assets/${key}`] || Object.values(realWorkModules)[0];
-  }
-  return '';
-}
-
-// Auto-generate exterior projects from photos/exterior/ folder
-// Auto-generate exterior projects from photos/exterior/ folder
-const exteriorKeys = Object.keys(exteriorModules).filter((k) => !k.includes('(1)')).sort();
-const autoExteriorProjects = exteriorKeys.map((path, i) => {
-  const filename = path.split('/').pop();
-  return {
-    id: 1000 + i,
-    title: `EXTERIOR ELEVATION ${String(i + 1).padStart(2, '0')}`,
-    category: 'Architectural Elevation',
-    filter: 'elevation',
-    mainCategory: 'exterior',
-    location: 'Faridabad, HR',
-    year: '2025',
-    imageKey: `photos/exterior/${filename}`,
-    heroImageKey: `photos/exterior/${filename}`,
-    description: 'Architectural elevation and facade design featuring premium stone cladding, CNC lattice screens, and precision exterior lighting.',
-    concept: 'Stately exterior facade engineered with high precision, warm ambient lighting, and rich material finishes.',
-    galleryKeys: [`photos/exterior/${filename}`],
+export const multiImageProjects = [
+  {
+    id: "modern-courtyard-residence",
+    title: "Modern Courtyard Residence",
+    category: "Residential",
+    filter: "elevation",
+    mainCategory: "exterior",
+    location: "Gurugram, India",
+    year: "2025",
+    image: "/images/projects/modern-courtyard-residence/exterior.jpg",
+    heroImage: "/images/projects/modern-courtyard-residence/exterior.jpg",
+    description: "A contemporary residence focused on natural light, clean geometry, exposed concrete, warm teak wood, and indoor-outdoor living.",
+    concept: "Engineered around a serene private courtyard to maximize daylight while retaining thermal comfort and architectural privacy.",
+    images: [
+      "/images/projects/modern-courtyard-residence/exterior.jpg",
+      "/images/projects/modern-courtyard-residence/living-room.jpg",
+      "/images/projects/modern-courtyard-residence/bedroom.jpg",
+      "/images/projects/modern-courtyard-residence/courtyard.jpg"
+    ],
+    galleryKeys: [],
     details: {
-      area: '4,000–8,000 sq ft',
-      duration: '3–5 weeks',
-      style: 'Luxury Facade',
-      services: 'Architectural Elevation, 3D Exterior Render',
-    },
-  };
-});
-
-// Auto-generate interior projects from photos/interior/ folder (filtering duplicate OS copies)
-const interiorKeys = Object.keys(interiorModules).filter((k) => !k.includes('(1)')).sort();
-
-// User-verified category map — each filename mapped to its correct category
-const interiorCategoryMap = {
-  '6337009540292875832.jpg': { filter: 'bedroom', category: 'Bedroom Suite Design', title: 'BEDROOM SUITE' },
-  '6337009540292875835.jpg': { filter: 'bedroom', category: 'Bedroom Suite Design', title: 'BEDROOM SUITE' },
-  '6337009540292875868.jpg': { filter: 'bedroom', category: 'Bedroom Suite Design', title: 'BEDROOM SUITE' },
-  '6337009540292875869.jpg': { filter: 'bedroom', category: 'Bedroom Suite Design', title: 'BEDROOM SUITE' },
-  '6337009540292875870.jpg': { filter: 'living', category: 'Living Space Design', title: 'LUXURY LIVING' },
-  '6337009540292875871.jpg': { filter: 'living', category: 'Living Space Design', title: 'LUXURY LIVING' },
-  '6337009540292875872.jpg': { filter: 'living', category: 'Living Space Design', title: 'LUXURY LIVING' },
-  '6337009540292875874.jpg': { filter: 'living', category: 'Living Space Design', title: 'LUXURY LIVING' },
-  '6337009540292875875.jpg': { filter: 'bedroom', category: 'Bedroom Suite Design', title: 'BEDROOM SUITE' },
-  '6337009540292875876.jpg': { filter: 'bedroom', category: 'Bedroom Suite Design', title: 'BEDROOM SUITE' },
-  '6337009540292875877.jpg': { filter: 'bedroom', category: 'Bedroom Suite Design', title: 'BEDROOM SUITE' },
-  '6337009540292875878.jpg': { filter: 'living', category: 'Living Space Design', title: 'LUXURY LIVING' },
-  '6337009540292875879.jpg': { filter: 'living', category: 'Living Space Design', title: 'LUXURY LIVING' },
-  '6337009540292875880.jpg': { filter: 'living', category: 'Living Space Design', title: 'LUXURY LIVING' },
-  '6337009540292875881.jpg': { filter: 'bedroom', category: 'Bedroom Suite Design', title: 'BEDROOM SUITE' },
-  '6337009540292875882.jpg': { filter: 'living', category: 'Living Space Design', title: 'LUXURY LIVING' },
-  '6337009540292875883.jpg': { filter: 'living', category: 'Living Space Design', title: 'LUXURY LIVING' },
-  '6337009540292875884.jpg': { filter: 'living', category: 'Living Space Design', title: 'LUXURY LIVING' },
-  '6337009540292875885.jpg': { filter: 'living', category: 'Living Space Design', title: 'LUXURY LIVING' },
-  '6337009540292875886.jpg': { filter: 'bedroom', category: 'Bedroom Suite Design', title: 'BEDROOM SUITE' },
-  '6337009540292875887.jpg': { filter: 'bedroom', category: 'Bedroom Suite Design', title: 'BEDROOM SUITE' },
-  '6337009540292875888.jpg': { filter: 'bedroom', category: 'Bedroom Suite Design', title: 'BEDROOM SUITE' },
-  '6337009540292875889.jpg': { filter: 'bedroom', category: 'Bedroom Suite Design', title: 'BEDROOM SUITE' },
-  '6337009540292875890.jpg': { filter: 'bedroom', category: 'Bedroom Suite Design', title: 'BEDROOM SUITE' },
-  '6337009540292875891.jpg': { filter: 'living', category: 'Living Space Design', title: 'LUXURY LIVING' },
-  '6337009540292875892.jpg': { filter: 'bedroom', category: 'Bedroom Suite Design', title: 'BEDROOM SUITE' },
-  '6337009540292875893.jpg': { filter: 'living', category: 'Living Space Design', title: 'LUXURY LIVING' },
-  '6337009540292875894.jpg': { filter: 'bedroom', category: 'Bedroom Suite Design', title: 'BEDROOM SUITE' },
-  '6337009540292875895.jpg': { filter: 'living', category: 'Living Space Design', title: 'LUXURY LIVING' },
-  '6337009540292875896.jpg': { filter: 'bedroom', category: 'Bedroom Suite Design', title: 'BEDROOM SUITE' },
-  '6337009540292875897.jpg': { filter: 'bedroom', category: 'Bedroom Suite Design', title: 'BEDROOM SUITE' },
-  '6337009540292875898.jpg': { filter: 'bedroom', category: 'Bedroom Suite Design', title: 'BEDROOM SUITE' },
-  '6337009540292875899.jpg': { filter: 'bedroom', category: 'Bedroom Suite Design', title: 'BEDROOM SUITE' },
-};
-
-// Per-category counters for sequential numbering
-const catCounters = {};
-
-const autoInteriorProjects = interiorKeys.map((path, i) => {
-  const filename = path.split('/').pop();
-  const cat = interiorCategoryMap[filename] || { filter: 'living', category: 'Living Space Design', title: 'INTERIOR DESIGN' };
-  catCounters[cat.filter] = (catCounters[cat.filter] || 0) + 1;
-  const num = String(catCounters[cat.filter]).padStart(2, '0');
-  return {
-    id: 2000 + i,
-    title: `${cat.title} ${num}`,
-    category: cat.category,
-    filter: cat.filter,
-    mainCategory: 'interior',
-    location: 'Faridabad, HR',
-    year: '2025',
-    imageKey: `photos/interior/${filename}`,
-    heroImageKey: `photos/interior/${filename}`,
-    description: 'Bespoke interior design visualization featuring tailored textures, custom ambient lighting, and photorealistic 3D spatial planning.',
-    concept: 'Engineered with attention to material honesty, ergonomic proportions, and mood-centric illumination to communicate spatial luxury.',
-    galleryKeys: [`photos/interior/${filename}`],
+      area: "6,500 sq ft",
+      duration: "6 months",
+      style: "Modern Indian Minimalist",
+      services: "Architecture, Interior Design & Courtyard Landscape"
+    }
+  },
+  {
+    id: "urban-luxury-villa",
+    title: "Urban Luxury Villa",
+    category: "Residential",
+    filter: "living",
+    mainCategory: "interior",
+    location: "New Delhi, India",
+    year: "2025",
+    image: "/images/projects/urban-luxury-villa/exterior.jpg",
+    heroImage: "/images/projects/urban-luxury-villa/exterior.jpg",
+    description: "A double-height urban villa featuring white travertine stone accent walls, custom brass lattice screens, and tailored luxury furnishings.",
+    concept: "Designed to combine monumental architectural presence with soft ambient warm illumination and cozy interior proportions.",
+    images: [
+      "/images/projects/urban-luxury-villa/exterior.jpg",
+      "/images/projects/urban-luxury-villa/living-room.jpg",
+      "/images/projects/urban-luxury-villa/bedroom.jpg",
+      "/images/projects/urban-luxury-villa/kitchen.jpg"
+    ],
+    galleryKeys: [],
     details: {
-      area: '1,500–4,000 sq ft',
-      duration: '3–5 weeks',
-      style: cat.filter === 'bedroom' ? 'Contemporary Luxury' : 'Modern Luxury',
-      services: `3D Interior Visualization, ${cat.category}`,
-    },
-  };
-});
-
-// rawProjects — real_work folder removed by user, no hand-curated entries
-
-// Resolve images for auto-generated projects
-const resolvedExterior = autoExteriorProjects.map(p => ({
-  ...p,
-  image: getImg(p.imageKey),
-  heroImage: getImg(p.heroImageKey),
-  gallery: p.galleryKeys.map(k => getImg(k)),
-}));
-
-const resolvedInterior = autoInteriorProjects.map(p => ({
-  ...p,
-  image: getImg(p.imageKey),
-  heroImage: getImg(p.heroImageKey),
-  gallery: p.galleryKeys.map(k => getImg(k)),
-}));
-
-// Final merged list: auto exterior + auto interior
-export const projects = [
-  ...resolvedExterior,
-  ...resolvedInterior,
+      area: "8,200 sq ft",
+      duration: "8 months",
+      style: "Modern Luxury",
+      services: "Full Turnkey Interior Architecture & Styling"
+    }
+  },
+  {
+    id: "contemporary-family-residence",
+    title: "Contemporary Family Residence",
+    category: "Residential",
+    filter: "living",
+    mainCategory: "interior",
+    location: "Faridabad, India",
+    year: "2025",
+    image: "/images/projects/contemporary-family-residence/exterior.jpg",
+    heroImage: "/images/projects/contemporary-family-residence/exterior.jpg",
+    description: "A sprawling contemporary home integrating biophilic interior gardens, warm wood paneling, and custom acoustic ceiling layouts.",
+    concept: "Spatial zoning tailored for modern family living with high visual harmony across natural stone textures and warm ambient lighting.",
+    images: [
+      "/images/projects/contemporary-family-residence/exterior.jpg",
+      "/images/projects/contemporary-family-residence/living-room.jpg",
+      "/images/projects/contemporary-family-residence/bedroom.jpg",
+      "/images/projects/contemporary-family-residence/dining.jpg"
+    ],
+    galleryKeys: [],
+    details: {
+      area: "5,400 sq ft",
+      duration: "5 months",
+      style: "Warm Contemporary",
+      services: "Interior Architecture & 3D Visualization"
+    }
+  },
+  {
+    id: "minimalist-garden-house",
+    title: "Minimalist Garden House",
+    category: "Residential",
+    filter: "elevation",
+    mainCategory: "exterior",
+    location: "Noida, India",
+    year: "2024",
+    image: "/images/projects/minimalist-garden-house/exterior.jpg",
+    heroImage: "/images/projects/minimalist-garden-house/exterior.jpg",
+    description: "A minimalist pavilion home surrounded by landscaped gardens, stone reflection pools, and floor-to-ceiling glass facades.",
+    concept: "Emphasizes visual transparency, clean horizontal geometry, and seamless transition between indoor spaces and landscaped gardens.",
+    images: [
+      "/images/projects/minimalist-garden-house/exterior.jpg",
+      "/images/projects/minimalist-garden-house/living-room.jpg",
+      "/images/projects/minimalist-garden-house/bedroom.jpg",
+      "/images/projects/minimalist-garden-house/garden.jpg"
+    ],
+    galleryKeys: [],
+    details: {
+      area: "4,800 sq ft",
+      duration: "4 months",
+      style: "Biophilic Minimalist",
+      services: "Architectural Elevation & Landscaping"
+    }
+  },
+  {
+    id: "modern-weekend-residence",
+    title: "Modern Weekend Residence",
+    category: "Residential",
+    filter: "bedroom",
+    mainCategory: "interior",
+    location: "Gurugram, India",
+    year: "2024",
+    image: "/images/projects/modern-weekend-residence/exterior.jpg",
+    heroImage: "/images/projects/modern-weekend-residence/exterior.jpg",
+    description: "A private architectural retreat featuring panoramic terrace views, bespoke timber woodwork, and luxury relaxation master suites.",
+    concept: "Crafted for peaceful weekend escapes with tranquil neutral tones, architectural fireplace accents, and seamless outdoor connectivity.",
+    images: [
+      "/images/projects/modern-weekend-residence/exterior.jpg",
+      "/images/projects/modern-weekend-residence/living-room.jpg",
+      "/images/projects/modern-weekend-residence/bedroom.jpg",
+      "/images/projects/modern-weekend-residence/terrace.jpg"
+    ],
+    galleryKeys: [],
+    details: {
+      area: "4,200 sq ft",
+      duration: "4 months",
+      style: "Resort Minimal",
+      services: "Interior Architecture & Custom Furnishings"
+    }
+  }
 ];
+
+export const projects = multiImageProjects.map((p) => ({
+  ...p,
+  gallery: p.images,
+}));
 
 export const testimonials = [
   {

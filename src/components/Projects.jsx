@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { ChevronLeft, ChevronRight, ArrowRight, Grid, MoveHorizontal, Building2, Home as HomeIcon, Layers } from 'lucide-react';
 import SectionHeading from './SectionHeading';
-import ProjectCard from './ProjectCard';
+import ProjectCard from './ProjectGallery/ProjectCard';
+import GalleryLightbox from './ProjectGallery/GalleryLightbox';
 import ProjectModal from './ProjectModal';
 import { projects } from '../data/projects';
 
@@ -29,13 +30,15 @@ const Projects = ({ isHome = false }) => {
   const [mainCategory, setMainCategory] = useState('all'); // 'all', 'interior', 'exterior'
   const [activeFilter, setActiveFilter] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
+  const [lightboxProject, setLightboxProject] = useState(null);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
   const [viewMode, setViewMode] = useState('swipe'); // 'swipe' or 'grid'
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef(null);
 
-  // Compute counts — strictly by folder source
-  const exteriorProjects = projects.filter((p) => p.imageKey?.startsWith('photos/exterior/'));
-  const interiorProjects = projects.filter((p) => p.imageKey?.startsWith('photos/interior/'));
+  // Compute counts
+  const exteriorProjects = projects.filter((p) => p.mainCategory === 'exterior' || p.imageKey?.startsWith('photos/exterior/'));
+  const interiorProjects = projects.filter((p) => p.mainCategory === 'interior' || p.imageKey?.startsWith('photos/interior/'));
 
   const exteriorCount = exteriorProjects.length;
   const interiorCount = interiorProjects.length;
@@ -44,10 +47,10 @@ const Projects = ({ isHome = false }) => {
   // Filter projects based on mainCategory and activeFilter
   const filteredProjects = projects.filter((p) => {
     if (mainCategory === 'exterior') {
-      if (!p.imageKey?.startsWith('photos/exterior/')) return false;
+      if (p.mainCategory !== 'exterior' && !p.imageKey?.startsWith('photos/exterior/')) return false;
     }
     if (mainCategory === 'interior') {
-      if (!p.imageKey?.startsWith('photos/interior/')) return false;
+      if (p.mainCategory !== 'interior' && !p.imageKey?.startsWith('photos/interior/')) return false;
     }
     if (activeFilter !== 'all' && p.filter !== activeFilter) return false;
     return true;
@@ -77,18 +80,13 @@ const Projects = ({ isHome = false }) => {
     setCurrentIndex((prev) => (prev - 1 + displayProjects.length) % displayProjects.length);
   };
 
-  const handleProjectClick = (project) => {
-    setSelectedProject(project);
-    document.body.style.overflow = 'hidden';
+  const handleProjectClick = (project, activeIndex = 0) => {
+    setLightboxProject(project);
+    setLightboxIndex(activeIndex);
   };
 
-  const handleCloseModal = (navigateToProject) => {
-    if (navigateToProject && navigateToProject.id) {
-      setSelectedProject(navigateToProject);
-    } else {
-      setSelectedProject(null);
-      document.body.style.overflow = '';
-    }
+  const handleCloseLightbox = () => {
+    setLightboxProject(null);
   };
 
   return (
@@ -542,8 +540,15 @@ const Projects = ({ isHome = false }) => {
         </div>
       </section>
 
-      {/* Project Modal */}
+      {/* Fullscreen Lightbox Gallery */}
       <AnimatePresence>
+        {lightboxProject && (
+          <GalleryLightbox
+            project={lightboxProject}
+            initialIndex={lightboxIndex}
+            onClose={handleCloseLightbox}
+          />
+        )}
         {selectedProject && (
           <ProjectModal project={selectedProject} onClose={handleCloseModal} />
         )}
